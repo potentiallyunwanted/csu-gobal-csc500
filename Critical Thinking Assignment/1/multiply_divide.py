@@ -1,6 +1,10 @@
-#!/usr/bin/env python3
+import cta1
 
-number1 = input('Number 1: ')
-number2 = input('Number 2: ')
-print('Factor:', int(number1) * int(number2))
-print('Quotient:', int(number1) / int(number2))
+def main():
+    init = cta1.cta1()
+    init.get_numbers()
+    init.print_results('multiply')
+    init.print_results('divide')
+
+if __name__ == '__main__':
+    main()

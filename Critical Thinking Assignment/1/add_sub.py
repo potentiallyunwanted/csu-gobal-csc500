@@ -1,6 +1,10 @@
-#!/usr/bin/env python3
+import cta1
 
-number1 = input('Number 1: ')
-number2 = input('Number 2: ')
-print('Sum:', int(number1) + int(number2))
-print('Difference:', int(number1) - int(number2))
+def main():
+    init = cta1.cta1()
+    init.get_numbers()
+    init.print_results('add')
+    init.print_results('subtract')
+
+if __name__ == '__main__':
+    main()
