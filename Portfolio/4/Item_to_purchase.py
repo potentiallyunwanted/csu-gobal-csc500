@@ -63,28 +63,53 @@ Your program submission materials must include your source code and screenshots 
 class ItemToPurchase:
     def __init__(self):
         self.item_name = "none"
-        self.item_price = 0
+        self.item_price = 0.0
         self.item_quantity = 0
+    
+    def set_item(self):
+        self.item_name = input("Enter the item name: ") or self.item_name
+        self.item_price = float(input("Enter the item price: ") or self.item_price)
+        self.item_quantity = int(input("Enter the item quantity: ") or self.item_quantity)
 
     def print_item_cost(self):
-        print(f"{self.item_name} {self.item_quantity} @ ${self.item_price:.2f} = ${self.item_price * self.item_quantity:.2f}")
-    
+        total_cost = self.item_price * self.item_quantity
+        print(f"{self.item_name} {self.item_quantity} @ ${self.item_price:.2f} = ${total_cost:.2f}")
+
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = [] 
+        
+    def add_item(self):
+        item = ItemToPurchase()
+        item.set_item()
+        self.items.append(item)
+        print(f"{item.item_name} successfully added.\n")
+
+    def print_total_cost(self):
+        total_cost = 0
+        print("\nTOTAL COST")
+        for item in self.items:
+            item_cost = item.item_price * item.item_quantity
+            total_cost += item_cost
+            item.print_item_cost()
+        print(f"\nTotal: ${total_cost:.2f}")
+
+
 def main():
-    item1 = ItemToPurchase()
-    item1.item_name = input("Enter the item name: ")
-    item1.item_price = float(input("Enter the item price: ").strip('$').strip())
-    item1.item_quantity = int(input("Enter the item quantity: "))
+    shopping_cart = ShoppingCart()
     
-    item2 = ItemToPurchase()
-    item2.item_name = input("Enter the item name: ")
-    item2.item_price = float(input("Enter the item price: ").strip('$').strip())
-    item2.item_quantity = int(input("Enter the item quantity: "))
+    add_more_items = True
+    while add_more_items:
+        shopping_cart.add_item()
+        add_more = input("Would you like to add another item? (y/n): ").lower()
+        if add_more == 'n':
+            if len(shopping_cart.items) < 2:
+                print("Please add at least two items.")
+            else:
+                add_more_items = False
     
-    total_cost = item1.item_price * item1.item_quantity + item2.item_price * item2.item_quantity
-    print("\nTOTAL COST")
-    item1.print_item_cost()
-    item2.print_item_cost()
-    print(f"Total: ${total_cost:.2f}")
+    shopping_cart.print_total_cost()
 
 if __name__ == "__main__":
     main()
