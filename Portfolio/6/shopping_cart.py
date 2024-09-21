@@ -135,6 +135,13 @@ def print_menu(shopping_cart):
 
 def main():
     shopping_cart = ShoppingCart()
+    first_name = input("Enter your first name: ")
+    last_name = input("Enter your last name: ")
+    month = input("Enter today's date: ")
+    day = input("Enter today's date: ")
+    year = input("Enter today's date: ")
+    shopping_cart.customer_name = f"{first_name} {last_name}"
+    shopping_cart.current_date = f"{month} {day}, {year}"
     print_menu(shopping_cart)
     
 
